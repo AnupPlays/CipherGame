@@ -29,6 +29,16 @@ public class Data<K, V> {
         return values.remove(i);
     }
 
+    public void set(K key, V value) {
+        if (keys.contains(key)) {
+            values.set(keys.indexOf(key), value);
+        } else {
+            keys.add(key);
+            values.add(value);
+            size++;
+        }
+    }
+
     public V get(K key) {
         return values.get(keys.indexOf(key));
     }

@@ -105,9 +105,9 @@ public class Decypher {
 
         char[] th = the.toCharArray();
 
-        compareTable.add(th[0], 't');
-        compareTable.add(th[1], 'h');
-        compareTable.add(th[2], 'e');
+        compareTable.set(th[0], 't');
+        compareTable.set(th[1], 'h');
+        compareTable.set(th[2], 'e');
 
         ArrayList<Character> std = new ArrayList<>(getDist().keys);
         ArrayList<Character> mstd = new ArrayList<>(Math.generateDistribution(msg).keys);
@@ -117,51 +117,38 @@ public class Decypher {
         String msg = getMessage();
         String decrypt = "";
 
-        System.out.println(Math.generateDistribution(msg));
+        Data<Character, Double> dist = Math.generateDistribution(msg);
 
         char[] chars = msg.toCharArray();
 
-        for (char c : chars) {
-            if (compareTable.keys.contains(c)) {
-                decrypt += "" + compareTable.get(c);
-            } else {
-                decrypt += "" + c;
-            }
-        }
-
-        System.out.println(compareTable + "\n");
-
-        System.out.println(msg);
-        System.out.println(decrypt);
-
-        System.out.println("\ninput change in \"a=b\" format (end to quit)");
-
         Scanner input = new Scanner(System.in);
 
-        String in = input.nextLine();
+        String in = "";
 
         while (!in.equals("end")) {
-            compareTable.add(in.charAt(0), in.charAt(2));
             decrypt = "";
 
             for (char c : chars) {
                 if (compareTable.keys.contains(c)) {
-                    decrypt += "" + compareTable.get(c);
+                    decrypt += "\u001B[32m" + compareTable.get(c);
                 } else {
-                    decrypt += "" + c;
+                    decrypt += "\u001B[37m" + c;
                 }
             }
+            decrypt += "\u001B[0m";
 
-            System.out.println("\n\n\n\n\n\n\n\n\n\n" + compareTable + "\n");
+            System.out.println(dist + "\n" + compareTable + "\n");
 
             System.out.println(msg);
             System.out.println(decrypt);
 
             System.out.println("\ninput change in \"a=b\" format (end to quit)");
 
-            input = new Scanner(System.in);
-
             in = input.nextLine();
+
+            compareTable.set(in.charAt(0), in.charAt(2));
+
+            System.out.println("\n\n\n\n\n\n\n\n\n");
         }
 
         return decrypt;
