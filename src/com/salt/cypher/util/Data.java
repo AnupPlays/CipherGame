@@ -1,4 +1,4 @@
-package com.salt.cypher;
+package com.salt.cypher.util;
 
 import java.util.ArrayList;
 

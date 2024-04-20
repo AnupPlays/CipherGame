@@ -1,7 +1,5 @@
 package com.salt.cypher.util;
 
-import com.salt.cypher.Data;
-
 import java.util.ArrayList;
 
 public class Math {

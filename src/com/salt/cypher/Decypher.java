@@ -1,5 +1,6 @@
 package com.salt.cypher;
 
+import com.salt.cypher.util.Data;
 import com.salt.cypher.util.Math;
 
 import java.io.File;
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Decypher {
-    private static Data<Character, Character> compareTable = new Data<>();
+    public static Data<Character, Character> compareTable = new Data<>();
 
     private static String getMessage() {
         File file = new File("/Users/saltdev/Documents/All Programming/IntelliJ/Reverse-Cypher/res/com/salt/cypher/message.txt");
